@@ -1,0 +1,90 @@
+services:
+  rabbitmq:
+    image: rabbitmq:4.3-management-alpine
+    environment:
+      RABBITMQ_DEFAULT_USER: polluser
+      RABBITMQ_DEFAULT_PASS: pollpass
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
+  poll-service:
+    build:
+      context: .
+      dockerfile: src/PollService/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__PollDb: ${POLL_DB_CONNECTION_STRING:?Set POLL_DB_CONNECTION_STRING in .env}
+    ports:
+      - "8081:8080"
+
+  voting-service:
+    build:
+      context: .
+      dockerfile: src/VotingService/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__VoteDb: ${VOTE_DB_CONNECTION_STRING:?Set VOTE_DB_CONNECTION_STRING in .env}
+      PollService__BaseUrl: http://poll-service:8080/
+      RabbitMq__HostName: rabbitmq
+      RabbitMq__Port: 5672
+      RabbitMq__UserName: polluser
+      RabbitMq__Password: pollpass
+      RabbitMq__ExchangeName: poll.events
+    ports:
+      - "8082:8080"
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      poll-service:
+        condition: service_started
+
+  realtime-service:
+    build:
+      context: .
+      dockerfile: src/RealtimeService/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      AllowedOrigins__0: http://localhost:5173
+      RabbitMq__HostName: rabbitmq
+      RabbitMq__Port: 5672
+      RabbitMq__UserName: polluser
+      RabbitMq__Password: pollpass
+      RabbitMq__ExchangeName: poll.events
+      RabbitMq__QueueName: realtime.vote-recorded
+    ports:
+      - "8083:8080"
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
+  api-gateway:
+    build:
+      context: .
+      dockerfile: src/ApiGateway/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      AllowedOrigins__0: http://localhost:5173
+    ports:
+      - "8080:8080"
+    depends_on:
+      poll-service:
+        condition: service_started
+      voting-service:
+        condition: service_started
+      realtime-service:
+        condition: service_started
+
+volumes:
+  rabbitmq-data:

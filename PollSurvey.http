@@ -1,0 +1,57 @@
+@gateway = http://localhost:8080
+@code = REPLACE_WITH_CODE
+@creatorToken = REPLACE_WITH_CREATOR_TOKEN
+@optionId = 00000000-0000-0000-0000-000000000000
+
+### Create poll
+POST {{gateway}}/polls
+Content-Type: application/json
+
+{
+  "question": "Which backend feature should be built next?",
+  "options": [
+    "Analytics",
+    "Authentication",
+    "Poll expiry"
+  ]
+}
+
+### Get poll
+GET {{gateway}}/polls/{{code}}
+
+### Update poll (creator only)
+PUT {{gateway}}/polls/{{code}}
+Content-Type: application/json
+
+{
+  "creatorToken": "{{creatorToken}}",
+  "question": "Which backend feature should be prioritised?",
+  "options": [
+    "Analytics dashboard",
+    "Authentication",
+    "Automatic poll expiry"
+  ]
+}
+
+### Vote (the HTTP client retains the voter cookie)
+POST {{gateway}}/polls/{{code}}/vote
+Content-Type: application/json
+
+{
+  "optionId": "{{optionId}}"
+}
+
+### Get results
+GET {{gateway}}/polls/{{code}}/results
+
+### Close poll
+PATCH {{gateway}}/polls/{{code}}/close
+Content-Type: application/json
+
+{
+  "creatorToken": "{{creatorToken}}"
+}
+
+### Delete poll (creator only)
+DELETE {{gateway}}/polls/{{code}}
+X-Creator-Token: {{creatorToken}}

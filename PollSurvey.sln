@@ -1,0 +1,55 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PollSurvey.Contracts", "src\PollSurvey.Contracts\PollSurvey.Contracts.csproj", "{3C2C4921-3133-4531-9271-21324047EF87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "src\ApiGateway\ApiGateway.csproj", "{E9255F07-B140-4B90-A89B-455B30BD57EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PollService", "src\PollService\PollService.csproj", "{4E21AB0A-C4CD-4EE7-987B-783FE4F171A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotingService", "src\VotingService\VotingService.csproj", "{935B8F0C-A7D5-47E0-8BB0-3B10805B4E2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealtimeService", "src\RealtimeService\RealtimeService.csproj", "{22665A30-C465-4B53-A913-E54F50C2CA96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PollService.UnitTests", "tests\PollService.UnitTests\PollService.UnitTests.csproj", "{C8016590-CDB1-4328-9802-2D4993383C5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotingService.UnitTests", "tests\VotingService.UnitTests\VotingService.UnitTests.csproj", "{AE9F761B-5B50-4B33-B35E-FBE19EB12ED7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C2C4921-3133-4531-9271-21324047EF87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C2C4921-3133-4531-9271-21324047EF87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C2C4921-3133-4531-9271-21324047EF87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C2C4921-3133-4531-9271-21324047EF87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9255F07-B140-4B90-A89B-455B30BD57EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9255F07-B140-4B90-A89B-455B30BD57EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9255F07-B140-4B90-A89B-455B30BD57EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9255F07-B140-4B90-A89B-455B30BD57EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E21AB0A-C4CD-4EE7-987B-783FE4F171A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E21AB0A-C4CD-4EE7-987B-783FE4F171A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E21AB0A-C4CD-4EE7-987B-783FE4F171A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E21AB0A-C4CD-4EE7-987B-783FE4F171A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{935B8F0C-A7D5-47E0-8BB0-3B10805B4E2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{935B8F0C-A7D5-47E0-8BB0-3B10805B4E2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{935B8F0C-A7D5-47E0-8BB0-3B10805B4E2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{935B8F0C-A7D5-47E0-8BB0-3B10805B4E2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22665A30-C465-4B53-A913-E54F50C2CA96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22665A30-C465-4B53-A913-E54F50C2CA96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22665A30-C465-4B53-A913-E54F50C2CA96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22665A30-C465-4B53-A913-E54F50C2CA96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8016590-CDB1-4328-9802-2D4993383C5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8016590-CDB1-4328-9802-2D4993383C5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8016590-CDB1-4328-9802-2D4993383C5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8016590-CDB1-4328-9802-2D4993383C5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE9F761B-5B50-4B33-B35E-FBE19EB12ED7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE9F761B-5B50-4B33-B35E-FBE19EB12ED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE9F761B-5B50-4B33-B35E-FBE19EB12ED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE9F761B-5B50-4B33-B35E-FBE19EB12ED7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
+

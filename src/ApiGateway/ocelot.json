@@ -1,0 +1,80 @@
+{
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/polls",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamPathTemplate": "/polls",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        { "Host": "poll-service", "Port": 8080 }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/polls/{code}/results",
+      "UpstreamHttpMethod": [ "GET" ],
+      "Priority": 1,
+      "DownstreamPathTemplate": "/polls/{code}/results",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        { "Host": "voting-service", "Port": 8080 }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/polls/{code}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamPathTemplate": "/polls/{code}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        { "Host": "poll-service", "Port": 8080 }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/polls/{code}",
+      "UpstreamHttpMethod": [ "PUT" ],
+      "DownstreamPathTemplate": "/polls/{code}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        { "Host": "poll-service", "Port": 8080 }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/polls/{code}",
+      "UpstreamHttpMethod": [ "DELETE" ],
+      "DownstreamPathTemplate": "/polls/{code}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        { "Host": "poll-service", "Port": 8080 }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/polls/{code}/close",
+      "UpstreamHttpMethod": [ "PATCH" ],
+      "DownstreamPathTemplate": "/polls/{code}/close",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        { "Host": "poll-service", "Port": 8080 }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/polls/{code}/vote",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamPathTemplate": "/polls/{code}/vote",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        { "Host": "voting-service", "Port": 8080 }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/hubs/{catchAll}",
+      "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS" ],
+      "DownstreamPathTemplate": "/hubs/{catchAll}",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        { "Host": "realtime-service", "Port": 8080 }
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:8080"
+  }
+}
