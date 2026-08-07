@@ -14,6 +14,25 @@ public sealed class PollsController(
     IShortCodeGenerator codeGenerator,
     ICreatorTokenProtector tokenProtector) : ControllerBase
 {
+    [HttpGet]
+    [ProducesResponseType<IReadOnlyList<PollResponse>>(StatusCodes.Status200OK)]
+    public async Task<ActionResult<IReadOnlyList<PollResponse>>> List(
+    [FromQuery] int limit = 20,
+    CancellationToken cancellationToken = default)
+    {
+        limit = Math.Clamp(limit, 1, 100);
+
+        var polls = await dbContext.Polls
+            .AsNoTracking()
+            .Include(poll => poll.Options)
+            .Where(poll => poll.DeletedAt == null)
+            .OrderByDescending(poll => poll.CreatedAt)
+            .Take(limit)
+            .ToListAsync(cancellationToken);
+
+        return Ok(polls.Select(ToResponse).ToList());
+    }
+
     [HttpPost]
     [ProducesResponseType<CreatePollResponse>(StatusCodes.Status201Created)]
     [ProducesResponseType<ValidationProblemDetails>(StatusCodes.Status400BadRequest)]

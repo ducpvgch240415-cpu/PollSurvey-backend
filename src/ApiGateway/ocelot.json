@@ -6,7 +6,10 @@
       "DownstreamPathTemplate": "/polls",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "poll-service", "Port": 8080 }
+        {
+          "Host": "poll-service",
+          "Port": 8080
+        }
       ]
     },
     {
@@ -16,7 +19,23 @@
       "DownstreamPathTemplate": "/polls/{code}/results",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "voting-service", "Port": 8080 }
+        {
+          "Host": "voting-service",
+          "Port": 8080
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/polls/{code}/votes",
+      "UpstreamHttpMethod": [ "GET" ],
+      "Priority": 1,
+      "DownstreamPathTemplate": "/polls/{code}/votes",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "voting-service",
+          "Port": 8080
+        }
       ]
     },
     {
@@ -25,7 +44,10 @@
       "DownstreamPathTemplate": "/polls/{code}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "poll-service", "Port": 8080 }
+        {
+          "Host": "poll-service",
+          "Port": 8080
+        }
       ]
     },
     {
@@ -34,7 +56,10 @@
       "DownstreamPathTemplate": "/polls/{code}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "poll-service", "Port": 8080 }
+        {
+          "Host": "poll-service",
+          "Port": 8080
+        }
       ]
     },
     {
@@ -43,7 +68,10 @@
       "DownstreamPathTemplate": "/polls/{code}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "poll-service", "Port": 8080 }
+        {
+          "Host": "poll-service",
+          "Port": 8080
+        }
       ]
     },
     {
@@ -52,7 +80,10 @@
       "DownstreamPathTemplate": "/polls/{code}/close",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "poll-service", "Port": 8080 }
+        {
+          "Host": "poll-service",
+          "Port": 8080
+        }
       ]
     },
     {
@@ -61,7 +92,10 @@
       "DownstreamPathTemplate": "/polls/{code}/vote",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
-        { "Host": "voting-service", "Port": 8080 }
+        {
+          "Host": "voting-service",
+          "Port": 8080
+        }
       ]
     },
     {
@@ -70,7 +104,10 @@
       "DownstreamPathTemplate": "/hubs/{catchAll}",
       "DownstreamScheme": "ws",
       "DownstreamHostAndPorts": [
-        { "Host": "realtime-service", "Port": 8080 }
+        {
+          "Host": "realtime-service",
+          "Port": 8080
+        }
       ]
     }
   ],

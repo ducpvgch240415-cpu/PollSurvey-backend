@@ -85,6 +85,47 @@ public sealed class VotesController(
         return Ok(results);
     }
 
+    [HttpGet("votes")]
+    [ProducesResponseType<RecentVotesResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<RecentVotesResponse>> RecentVotes(
+    string code,
+    [FromQuery] int limit = 50,
+    CancellationToken cancellationToken = default)
+    {
+        var poll = await pollServiceClient.GetPollAsync(code, cancellationToken);
+        if (poll is null)
+            return NotFound();
+
+        limit = Math.Clamp(limit, 1, 100);
+
+        var optionDetails = poll.Options.ToDictionary(
+            option => option.Id,
+            option => (option.Text, option.Position));
+
+        var totalVotes = await dbContext.Votes
+            .AsNoTracking()
+            .CountAsync(vote => vote.PollCode == poll.Code, cancellationToken);
+
+        var votes = await dbContext.Votes
+            .AsNoTracking()
+            .Where(vote => vote.PollCode == poll.Code)
+            .OrderByDescending(vote => vote.VotedAt)
+            .Take(limit)
+            .Select(vote => new { vote.OptionId, vote.VotedAt })
+            .ToListAsync(cancellationToken);
+
+        return Ok(new RecentVotesResponse(
+            poll.Code,
+            totalVotes,
+            votes.Select(vote => new RecentVote(
+                vote.OptionId,
+                optionDetails[vote.OptionId].Text,
+                optionDetails[vote.OptionId].Position,
+                vote.VotedAt))
+            .ToList()));
+    }
+
     [HttpGet("results")]
     [ProducesResponseType<PollResults>(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
