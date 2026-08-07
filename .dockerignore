@@ -3,6 +3,7 @@
 .git
 .github
 .vs
+.env
 TestResults
 README.md
 
