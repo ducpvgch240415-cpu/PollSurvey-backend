@@ -51,7 +51,7 @@ public sealed class VotesController(
             VotedAt = DateTimeOffset.UtcNow
         };
 
-       dbContext.Votes.Add(vote);
+        dbContext.Votes.Add(vote);
 
         try
         {
@@ -59,7 +59,7 @@ public sealed class VotesController(
         }
         catch (DbUpdateException exception)
             when (exception.InnerException is PostgresException
-                  { SqlState: PostgresErrorCodes.UniqueViolation })
+            { SqlState: PostgresErrorCodes.UniqueViolation })
         {
             return Conflict(new ProblemDetails
             {
