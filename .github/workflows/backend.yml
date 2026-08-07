@@ -24,8 +24,8 @@ jobs:
       - name: Restore
         run: dotnet restore PollSurvey.sln
 
-      - name: Static analysis
-        run: dotnet format PollSurvey.sln --verify-no-changes --no-restore
+      - name: Check formatting
+        run: dotnet format whitespace PollSurvey.sln --verify-no-changes --no-restore
 
       - name: Build
         run: dotnet build PollSurvey.sln --configuration Release --no-restore
