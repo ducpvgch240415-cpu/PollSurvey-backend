@@ -5,6 +5,9 @@ on Neon, Entity Framework Core, Ocelot, RabbitMQ and SignalR. Account
 authentication remains future development; poll management is protected by a
 creator token returned when a poll is created.
 
+## Live URLs
+ - Frontend: [https://amd201.onrender.com](https://amd201.onrender.com)
+ - Backend: [https://poorpollsurvey.up.railway.app/](https://poorpollsurvey.up.railway.app/)
 ## Architecture
 
 ```mermaid
