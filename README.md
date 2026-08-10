@@ -8,7 +8,7 @@ creator token returned when a poll is created.
 ## Live URLs
  - Frontend: [https://amd201.onrender.com](https://amd201.onrender.com)
  - Backend: [https://poorpollsurvey.up.railway.app/](https://poorpollsurvey.up.railway.app/)
-
+ - HealthCheck: [https://poorpollsurvey.up.railway.app/health](https://poorpollsurvey.up.railway.app/health) to check the status of the server
 ## Docker Hub Images
  - REPO: [Repositories](https://hub.docker.com/repositories/duckbruh)
  - API Gateway: [poll-api-gateway](https://hub.docker.com/repository/docker/duckbruh/poll-api-gateway/general)
