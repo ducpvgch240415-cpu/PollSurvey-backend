@@ -22,5 +22,6 @@ public sealed class ShortCodeGenerator : IShortCodeGenerator
                 buffer[index] = Alphabet[RandomNumberGenerator.GetInt32(Alphabet.Length)];
         });
     }
+
 }
 
